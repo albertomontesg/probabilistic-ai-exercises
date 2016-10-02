@@ -1,0 +1,50 @@
+\documentclass{ethz_report}
+\usepackage{enumitem}
+
+\title{Problem Set 1}
+\subject{Probabilistic Foundations of Artificial Intelligence}
+\author{Alberto Montes}
+\email{malberto@student.ethz.ch}
+\date{\today}
+
+\numberwithin{equation}{section}
+
+\begin{document}
+\maketitle
+
+\section{Conditional Probabilities}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{If $P(a|b,c) = P(b|a,c)$, then $P(a|c) = P(b|c)$}
+    \begin{subequations}
+        \begin{align}
+            P(a|b,c) &= P(b|a,c)\\
+            \frac{P(a,b,c)}{P(b,c)} &= \frac{P(a,b,c)}{P(a,c)}\\
+            P(b,c) &= P(a,c)\\
+            P(b|c) \cdot P(c) &= P(a|c) \cdot P(c)\\
+            P(b|c) &= P(a|c)
+        \end{align}
+    \end{subequations}
+
+    \item \textbf{If $P(a|b,c) = P(a)$, then $P(b|c) = P(b)$}
+    \begin{subequations}
+        \begin{align}
+
+        \end{align}
+    \end{subequations}
+
+    \item \textbf{If $P(a|b) = P(a)$, then $P(a|b,c) = P(a|c)$}
+    \begin{subequations}
+        \begin{align}
+
+        \end{align}
+    \end{subequations}
+
+\end{enumerate}
+
+\section{Finding the Fake Coin}
+
+\section{Naive Bayes}
+
+
+\end{document}
