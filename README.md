@@ -1,2 +1,3 @@
-# probabilistic-ai-exercises
+# Probabilistic Artificial Intelligence Exercises
+
 Probabilistic Artificial Intelligence Exercises
