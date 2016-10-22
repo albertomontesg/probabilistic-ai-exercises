@@ -5,7 +5,6 @@ PAI: Homework 2 --- d-separation in Bayesian networks
 
 import networkx as nx
 
-
 EDGE_COLOR = '#bbbbbb'
 EDGE_WIDTH = 2
 NODE_SIZE = 3000
@@ -45,7 +44,9 @@ class BayesNet(nx.DiGraph):
         to_visit = set(variables)
         ancestors = set()
         while to_visit:
-            break  # TODO: Implement this.
+            source = to_visit.pop()
+            ancestors |= nx.algorithms.dag.ancestors(self, source)
+            #break  # TODO: Implement this.
         return ancestors
 
     def get_reachable(self, x, observed=None, plot=False):

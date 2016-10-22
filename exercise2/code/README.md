@@ -6,7 +6,7 @@ In this homework you have to implement d-separation.
 Dependencies
 ------------
 
-To run the code,  you will need the following Python libraries:
+To run the code, you will need the following Python libraries:
 
   * networkx
   * matplotlib

@@ -6,7 +6,7 @@ import core
 # +---+     +---+
 def bn_independent():
     g = core.BayesNet()
-    g.add_nodes_from(['X', 'Y'])
+    g.add_nodes_from(['X', 'Z'])
     return g
 
 
@@ -15,8 +15,8 @@ def bn_independent():
 # +---+     +---+
 def bn_dependent():
     g = core.BayesNet()
-    g.add_nodes_from(['X', 'Y'])
-    g.add_edge('X', 'Y')
+    g.add_nodes_from(['X', 'Z'])
+    g.add_edge('X', 'Z')
     return g
 
 
