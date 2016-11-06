@@ -95,10 +95,22 @@ class BayesNet(nx.DiGraph):
             visited.add(current)
             # <--- V
             if not trail_entering and variable not in observed:
-                pass  # TODO: Implement this.
+                # <--- V <---
+                for predecessor in self.predecessors_iter(variable):
+                    to_visit.add((predecessor, False))
+                # <--- V --->
+                for successor in self.successors_iter(variable):
+                    to_visit.add((successor, True))
             # ---> V
             elif trail_entering:
-                pass  # TODO: Implement this.
+                # ---> V --->
+                if variable not in observed:
+                    for successor in self.successors_iter(variable):
+                        to_visit.add((successor, True))
+                # ---> V <---
+                elif variable in ancestors:
+                    for predecessor in self.predecessors_iter(variable):
+                        to_visit.add((predecessor, False))
         # Just a convention to not return the query node.
         reachable.discard(x)
         # Optionally plot.
