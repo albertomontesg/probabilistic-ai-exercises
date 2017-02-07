@@ -1,10 +1,8 @@
-import math
 from functools import reduce
-
-import matplotlib.pyplot as plt
+import math
 import networkx as nx
 import numpy as np
-
+import matplotlib.pyplot as plt
 from conf import *
 
 
@@ -60,17 +58,13 @@ class VariableNode(Node):
             The target factor, which should be a neighbor in the factor graph.
         """
         msg = np.zeros(len(self.domain))
-        # TODO: Create the message to be sent to factor ``target``.
         for fnode in self.neighbors:
             if fnode != target:
                 msg += self.received[fnode]
-
         target.receive(self, normalize(msg))
 
     def marginal(self):
         """Compute the marginal probability distribution of this variable."""
-        # TODO: Compute the marginal of this variable using all received
-        #       messages. Function ``normalize`` might be useful here.
         m = np.zeros(len(self.domain))
         for fnode in self.neighbors:
             m += self.received[fnode]
@@ -124,13 +118,6 @@ class FactorNode(Node):
         target_index = self.neighbors.index(target)
         msg = -np.Inf * np.ones(len(target.domain))
         for comb, fvalue in self.table.items():
-            # TODO: Create the message to be sent to variable node target.
-            #
-            #       Since probabilities are in the log domain, you can use the
-            #       numerically stable function np.logaddexp in the places
-            #       would need to sum two values in the original domain:
-            #
-            #           logaddexp(a, b) = log(exp(a) + exp(b)).
             s = 0
             for i, vnode in enumerate(self.neighbors):
                 if vnode != target:
@@ -340,7 +327,7 @@ def normalize(logdist):
     return logdist - Z
 
 
-def draw_marginals(marg):
+def draw_marginals(marg, markers=True):
     """Draw the marginal distribution of each variable for each BP iteration.
 
     Arguments
@@ -348,6 +335,8 @@ def draw_marginals(marg):
     marg: tuple
         A tuple of belief propagation results as return by
         ``FactorGraph.run_bp``.
+    markers: boolean
+        If true markers are drawn on top of the plot lines.
     """
     marg, doms, obs = marg
     n = len(marg)
@@ -358,7 +347,10 @@ def draw_marginals(marg):
             plt.subplot(rows, 2, i + 1, axisbg=AXIS_OBSERVED_BG_COLOR)
         else:
             plt.subplot(rows, 2, i + 1)
-        obj = plt.plot(values, '-o', linewidth=2, antialiased=True)
+        if markers:
+            obj = plt.plot(values, '-o', linewidth=2, antialiased=True)
+        else:
+            obj = plt.plot(values, '-', linewidth=2, antialiased=True)
         for o in plt.gcf().findobj():
             o.set_clip_on(False)
         plt.ylim((0, 1))
