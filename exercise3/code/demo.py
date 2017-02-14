@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
+
 import bprop
 import examples_bprop
 
-
 # Load coin flipping Bayes network and plot it.
-bn = examples_bprop.bn_naive_bayes()
+# bn = examples_bprop.bn_naive_bayes()
+bn = examples_bprop.bn_exam()
 bn.draw()
 plt.show()
 
@@ -21,7 +22,7 @@ plt.show()
 
 # Condition on having observed heads, tails, heads, compute the conditional
 # marginal distributions, and plot them.
-g.condition({'X1': 'H', 'X2': 'T', 'X3': 'H'})
+g.condition({'X1': '1', 'X2': '0', 'X3': '0'})
 marg = g.run_bp(10)
 bprop.draw_marginals(marg)
 plt.show()
